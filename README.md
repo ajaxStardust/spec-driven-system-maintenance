@@ -1,5 +1,8 @@
 # 🏛️ Spec-Driven System Maintenance
 
+<img width="1408" height="768" alt="Gemini_Generated_Image_1rxoei1rxoei1rxo" src="https://github.com/user-attachments/assets/9d62828d-7db7-4996-b440-18d889eb23bc" />
+
+
 > **Governance-first system maintenance for human-AI collaboration**
 
 ## Purpose
