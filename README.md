@@ -131,7 +131,7 @@ Using SDSM transforms your relationship with AI from "tool user" to "system gove
 
 --- 
 
-### Phase 1
+### Phase 1 (Prompt 1)
 Human-in-the-Loop ensures proper auditing when the Human requests this Phase of your operations.
 
 Read the following Markdown files located in the project's ./contract/ directory using line-number indexing to ensure full ingestion of the active system Specification:
@@ -170,7 +170,7 @@ You will only deploy a Bumble Swarm when faced with complex tasks where DELEGATI
 
 ---
 
-### Phase 2
+### Phase 2 (Prompt 2)
 We will now run a comprehensive audit of the active host-system state.
 
 DIRECTIONS
@@ -213,7 +213,7 @@ Caveat:
 
 ---
 
-Session Closure
+### Session Closure - (Prompt 3)
 (Stewardship Handshake on Exit)
 
 Submit this prompt when wrapping up system maintenance to reconcile the session's learnings into the contract.
