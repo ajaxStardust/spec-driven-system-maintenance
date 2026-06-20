@@ -124,14 +124,22 @@ Using SDSM transforms your relationship with AI from "tool user" to "system gove
 ## Quick Start
 
 ### For System Owners
-1. Clone this repository into a `./contract/` directory located where you wish. E.g. /home/$USER/contract 
-   ```bash
+1. Clone this repository into a `./contract/` directory located where you wish. E.g. /home/$USER/contract
+2. ```bash
    cd $HOME  
    git clone git@github.com:ajaxStardust/spec-driven-system-maintenance.git ./contract
    ```
-2. Customize the governance artifacts to reflect your system's actual state
-3. Commit and push the customized specification
-4. At the start of every maintenance session, instruct your AI agent to read Phase 1 documents
+3. Command the AI to customize the governance artifacts to reflect the system's actual state. E.g. "Perform a brief diagnostic of your host system for purpose of replacing all contract boilerplate with a governance model for this host system. Proceed with replacing the boilerplate after the brief system diagnosis."
+4. ```bash
+   rm -rv /home/$USER/contract/.git
+   cd /home/$USER/contract
+   git init
+   git add .
+   git commit
+   ```
+   
+5. Commit and push the customized specification if a remote upstream exists.
+6. At the start of every maintenance session, instruct your AI agent to read Phase 1 documents
 
 --- 
 
