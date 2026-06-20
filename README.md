@@ -183,9 +183,15 @@ Consider a Dynamic Workflow: Deploy a Bumble swarm to complete these tasks simul
 
 Verify the integrity of the governance set:
 
-Confirm all expected files exist: ./contract/WHY.md, ./contract/CONTRACT.md, ./contract/QUICKSTART.md, ./contract/ASSETS.md, ./contract/FUTURE.md, ./contract/DELEGATION.md, ./contract/DELTALOG.md.
+Confirm all expected files exist: WHY.md (Intent & Philosophy)
+CONTRACT.md (The Law / Invariants)
+QUICKSTART.md (Operational Entry / Runbook)
+ASSETS.md (Resource & Binary Invariants)
+FUTURE.md (Roadmap & Scaling)
+DELEGATION.md (Agency Registry / System Silos)
+DELTALOG.md (Transit of Law / Change Queue)
 
-Note: if uncommitted or recent changes exist in ./contract/*.md, they are intentional and reflect the most recent session. Do not flag these as issues requiring immediate resolution.
+Note: if uncommitted or recent changes exist in the aforementioned markdown files, they are intentional and reflect the most recent session. Do not flag these as issues requiring immediate resolution.
 
 If DELTALOG.md is missing, the contract set is structurally out of sync. Report this and halt until the template structure is reconciled.
 
