@@ -124,8 +124,9 @@ Using SDSM transforms your relationship with AI from "tool user" to "system gove
 ## Quick Start
 
 ### For System Owners
-1. Clone this repository into a `./contract/` directory at your project root:
+1. Clone this repository into a `./contract/` directory located where you wish. E.g. /home/$USER/contract 
    ```bash
+   cd $HOME  
    git clone git@github.com:ajaxStardust/spec-driven-system-maintenance.git ./contract
    ```
 2. Customize the governance artifacts to reflect your system's actual state
