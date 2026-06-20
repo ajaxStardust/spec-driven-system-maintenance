@@ -137,7 +137,9 @@ Using SDSM transforms your relationship with AI from "tool user" to "system gove
 ### Phase 1 (Prompt 1)
 Human-in-the-Loop ensures proper auditing when the Human requests this Phase of your operations.
 
-Read the following Markdown files located in the project's ./contract/ directory using line-number indexing to ensure full ingestion of the active system Specification:
+Read the following Markdown files located in a directory called $HOME/contract 
+Read the files using line-number indexing to ensure full ingestion of the active system Specification:
+Note the individual file names (and their general pupose):
 
 $HOME/contract/WHY.md (Intent & Philosophy)
 $HOME/contract/CONTRACT.md (The Law / Invariants)
@@ -148,7 +150,7 @@ $HOME/contract/DELEGATION.md (Agency Registry / System Silos)
 $HOME/contract/DELTALOG.md (Transit of Law / Change Queue)
 
 DIRECTIONS:
-Read the markdown files contained in the ./contract directory. What you find there is the Source of Truth for the host system; the law you obey for the remainder of the maintenance session. Acknowledge, but say no more until Phase 2.
+The contents of ./contract is the Source of Truth for the host system; the law you obey for the remainder of the maintenance session. Acknowledge, "I located the contract and acknowledge it as source of truth," but say NO MORE until you complete Phase 2.
 
 CONSTRAINTS:
 Do NOT return a verbose summary of the files.
