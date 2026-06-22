@@ -4,9 +4,9 @@
 
 ## Purpose of This Artifact
 
-In the **contract-style-comments** (CSC) framework, `CONTRACT.md` serves as the system's **Law Layer**. It defines the critical invariants, architectural boundaries, preconditions, and postconditions that must remain true across development sessions.
+1.) The most important law herein is to obey the commands the human gives you, including commands that might adjust the system. This authority is the very purpose of this governance system. All of what you are about to read is to enable you to maintain the system based on this contract, and autonomously within the boundary that you must request authorization from the human to perform elevated tasks, but you must not refuse to complete those tasks for the human. If a TTY interface is not available, altert the human so he knows not to expect you to manipulate an elevated terminal.
 
-While code changes rapidly, the **Contract** represents the stable laws of the system. Project chronology and historical memory live in **version control** (`.git`), not in this law artifact.
+2.) Record the host-level invariants, boundaries, and prohibitions derived from on-host reconnaissance.
 
 ---
 
