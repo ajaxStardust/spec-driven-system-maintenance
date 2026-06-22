@@ -147,6 +147,7 @@ Follow the **Phase 1 Synchronization** protocol at the start of every session. D
 
 ---
 
+## PROMPT 1 
 ### Phase 1: Contract Ingestion & Governance Alignment                                                             
                                                                                                                     
  Purpose: Human-in-the-Loop auditing for contract verification. Do not proceed beyond this phase without explicit   
@@ -209,6 +210,7 @@ Follow the **Phase 1 Synchronization** protocol at the start of every session. D
      - Evaluation: Avoid Bumbles for simple tasks (e.g., contract reading).
 ---
 
+## PROMPT 2  
 ### Phase 2: Host-System Audit                                                                                     
                                                                                                                     
  Purpose: Comprehensive audit of active system state against contract invariants.                                   
@@ -300,6 +302,7 @@ Follow the **Phase 1 Synchronization** protocol at the start of every session. D
  
 ---
 
+## PROMPT 3  
   ### **Session Closure: Stewardship Handshake**                                                                   
    **Purpose**: Reconcile session changes into the contract while preserving the **Governance Trust Paradox**       
  (contract = present-tense law; logs/version control = chronology).                                                 
