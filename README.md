@@ -142,137 +142,243 @@ Using SDSM transforms your relationship with AI from "tool user" to "system gove
 6. At the start of every maintenance session, instruct your AI agent to read Phase 1 documents
 
 --- 
-
-### Phase 1 (Prompt 1)
-Human-in-the-Loop ensures proper auditing when the Human requests this Phase of your operations.
-
-Read the following Markdown files located in a directory called /home/$USER/contract 
-Read the files using line-number indexing to ensure full ingestion of the active system Specification:
-Note the individual file names (and their general pupose):
-
-WHY.md (Intent & Philosophy)
-CONTRACT.md (The Law / Invariants)
-QUICKSTART.md (Operational Entry / Runbook)
-ASSETS.md (Resource & Binary Invariants)
-FUTURE.md (Roadmap & Scaling)
-DELEGATION.md (Agency Registry / System Silos)
-DELTALOG.md (Transit of Law / Change Queue)
-
-DIRECTIONS:
-The contents of ./contract is the Source of Truth for the host system; the law you obey for the remainder of the maintenance session. Acknowledge, "I located the contract and acknowledge it as source of truth," but say NO MORE until you complete Phase 2.
-
-CONSTRAINTS:
-Do NOT return a verbose summary of the files.
-Do NOT run system probes, execute privileged commands, or inspect runtime state unless requested.
-Do NOT scan system configuration directories (e.g., /etc, /opt) yet; this will be covered in Phase 2. Platform-specific paths (package manager logs, etc.) are defined in CONTRACT.md and must not be hardcoded.
-If a read_file call returns "File not found or unreadable" for a path Phase 1 depends on, the next calls must be ls -la and wc -l , then retry read_file with explicit``start_line` and end_line (in chunks if the file is large). TASKS:
-Verify the integrity of these files by confirming their presence and readability. Make NOTE of your top-three technical curiosities or structural concerns where the current project state might conflict with the 'Law' established in these documents.
-
-NOTE:
-You will encounter LAST REVIEWED / LAST UPDATED stamps in CONTRACT.md and adjacent files. The signature must reflect the actual model doing the work. You are not writing signatures during this Phase, but you must be aware of which model last touched the codebase before you, for your better understanding of its state.
-
-Later:
-Your Orchestrated, Multi Sub-Agent swarm are The Bumbles, a troupe of anthropomorphized processing-task characterizations. Your Bumble Swarm exists as a team which you command as Conductor and Orchestrator. Use DELEGATION.md to manage this processing efficiency. Bumbles only buzz to harden the system and help when you have too many tasks!
-
-Named roles map to system maintenance:
-
-Detective Bumble locates a config file or system resource.
-Rescue Bumble evaluates a bug, service failure, or regression.
-Builder Bumble writes a new config file or shell script.
-DevOps Bumble manages CONTRACT reconciliation and runbook updates.
-You will only deploy a Bumble Swarm when faced with complex tasks where DELEGATION.md would benefit processing. Testing shows Bumbles might waste time if a task is simple. When considering using Bumbles, briefly evaluate for a sound decision to Bumble or not. Reading the CONTRACT.md files, per these instructions, does not require help from the Bumbles.
-
----
-
-### Phase 2 (Prompt 2)
-We will now run a comprehensive audit of the active host-system state.
-
-DIRECTIONS
-Consider a Dynamic Workflow: Deploy a Bumble swarm to complete these tasks simultaneously ONLY if you predict it will be more efficient.
-
-Verify the integrity of the governance set:
-
-Confirm all expected files exist: WHY.md (Intent & Philosophy)
-CONTRACT.md (The Law / Invariants)
-QUICKSTART.md (Operational Entry / Runbook)
-ASSETS.md (Resource & Binary Invariants)
-FUTURE.md (Roadmap & Scaling)
-DELEGATION.md (Agency Registry / System Silos)
-DELTALOG.md (Transit of Law / Change Queue)
-
-Note: if uncommitted or recent changes exist in the aforementioned markdown files, they are intentional and reflect the most recent session. Do not flag these as issues requiring immediate resolution.
-
-If DELTALOG.md is missing, the contract set is structurally out of sync. Report this and halt until the template structure is reconciled.
-
-Run the Maintenance Handshake precondition checks from CONTRACT.md:
-
-Run inxi -b to verify host boundaries. Run df -h to verify disk headroom before any further probing. Inspect the package state:
-
-Inspect the list of installed applications via the package manager and capture it to a baseline file under $HOME/backups/ if a current baseline does not exist.
-
-Discover if there are any held packages and pending upgrades. Inspect the package manager history log (path defined in CONTRACT.md) for recent mutations. Identify any rollback/restart helper scripts in $HOME or /usr/local/bin. Verify the manual application registry from ASSETS.md:
-
-Verify AI silo boundaries.
-
-Record whether the probe passes, fails, or hangs. Verify critical system services:
-
-Check SSH status: systemctl is-active ssh (or the correct ssh service name). Check network connectivity: ip route and ping -c 1 1.1.1.1.
-
-Check display server environment: echo $XDG_SESSION_TYPE and confirm Wayland or x11. Inspect active configuration directories:
-
-Verify package manager and source repositories are valid.
-
-Identify any timestamped config backups (.bak.) under /etc. Identify any rollback/restart helper scripts in $HOME or /usr/local/bin. Identify backup/snapshot tooling:
-
-Check for Timeshift, rsnapshot, btrfs snapshots, or other recovery mechanisms. Record the command or path used to create a recovery point. SUMMARY REPORT FORMAT:
-
-Provide a concise 2-sentence summary of your overall discoveries. State the top-three curiosities or concerns regarding the current operational state versus the ideal specification state. List the verified status of all system pipelines and active local runtime boundaries. List any rollback/restart helper scripts found and their roles.
-
-Caveat:
-⚡ Performance & Hardware Constraints Tailor all system maintenance suggestions to the actual host. (e.g. Debian, Fedora, Arch, etc)
-
----
-
-### Session Closure - (Prompt 3)
-(Stewardship Handshake on Exit)
-
-Submit this prompt when wrapping up system maintenance to reconcile the session's learnings into the contract.
-
-Please take a moment as a system steward to reconcile the governance documents under ./contract/. Review the system changes made during this session and update the spec files to reflect any new invariants, operational commands, config files, installed packages, or resource targets introduced.
-
-CRITICAL DIRECTIVES:
-Deploy a Bumble swarm to complete these tasks simultaneously ONLY if you predict it will be more efficient:
-
-Maintain the Governance Trust Paradox: the Contract is not a semantic prose copy of command history or package logs. Logs hold chronology; the Contract holds present-tense law.
-
-Governance Identifier Convention:
-
-Ensure all updated LAST REVIEWED / LAST UPDATED lines carry today's date formatted strictly as YYYY-MM-DD-QUALIFIER (e.g., 2026-06-19-ROCM-REPAIR). The QUALIFIER must be a semantic label describing the change (e.g., ROCM-REPAIR, APT-AUDIT, NETWORK-SYNC, BASELINE-CAPTURE). NEVER use a future date unless explicitly documented at the point of use. Follow each date with your signature stamp: SIGNATURE: . Adhere strictly to the Narrowest-Scope Update Rule:
-
-Logical invariants/boundaries changed → Update ./contract/CONTRACT.md Operational/run commands/file maps/proven checks changed → Update ./contract/QUICKSTART.md Installed binaries, drivers, desktop entries, model weights, or static resources changed → Update ./contract/ASSETS.md Governance rules or artifact relationships changed → Update ./contract/WHY.md Roadmap priorities or prospective work changed → Update ./contract/FUTURE.md Active agent scope or file locks changed → Update ./contract/DELEGATION.md Proposed/merged system changes → Update ./contract/DELTALOG.md Human-in-the-loop review:
-
-No Triumvirate artifact (CONTRACT.md, WHY.md, QUICKSTART.md) may be treated as finalized law until the human maintainer has reviewed the diff or changes. Prepare a concise summary of contract edits for human review before declaring the session closed. Transport-layer safety:
-
-If you are working via a string-fragile transport (SSH tool calls, JSON payloads, shell heredocs), encode the markdown payload as base64 in transit and decode on receipt. Governance artifacts on disk must remain plain, readable Markdown. Never store base64-encoded governance files. Final review:
-
-Before declaring the session closed, review the updated contract files to ensure they accurately reflect the session's system changes and adhere to CSC principles.
-
-VERSIONING NOTE:
-The ./contract/ directory is intentionally decoupled from the github repo. Ensure that git operations are performed on the correct branch. CRITICAL DIRECTIVE: Maintain the Governance Trust Paradox: the Contract is Law and therefore must not be a semantic prose copy of git history. Maintain that Git holds chronology; the Contract holds present-tense law. Human-in-the-Loop ensures proper auditing when the Human requests this Phase of your operations.
-
-Save contract changes directly to the contract files. If the maintainer keeps this contract set in version control elsewhere, summarize the changes and ask whether to commit or copy them to the tracked location.
-
-DEPLOYMENT CONSIDERATIONS:
-Do not reboot the host or restart critical services defined in CONTRACT.md without EXPLICIT human authorization.
-
-If a change requires a reboot or service restart, first: Document the exact rollback path in CONTRACT.md or QUICKSTART.md. Verify a recovery mechanism exists (snapshot, backup, or documented undo command). Request confirmation from the user. If this host has a mirror or secondary system, request authorization before applying the same changes elsewhere, and perform a dry run or snapshot first.
-
----
-
 ### For AI Agents
 Follow the **Phase 1 Synchronization** protocol at the start of every session. Do not make assumptions. Do not execute maintenance tasks until you have verified the governing artifacts match the current system state.
 
 ---
+
+### Phase 1: Contract Ingestion & Governance Alignment                                                             
+                                                                                                                    
+ Purpose: Human-in-the-Loop auditing for contract verification. Do not proceed beyond this phase without explicit   
+ human approval.                                                                                                    
+                                                                                                                    
+ #### Files to Ingest (Line-Number Indexed)                                                                         
+                                                                                                                    
+ Read the following Markdown files in /home/$USER/contract and note their purpose:                                  
+ - WHY.md: Intent & governance philosophy.                                                                          
+ - CONTRACT.md: System invariants ("The Law").                                                                      
+ - QUICKSTART.md: Operational entry/runbook.                                                                        
+ - ASSETS.md: Resource/binary invariants.                                                                           
+ - FUTURE.md: Roadmap & scaling priorities.                                                                         
+ - DELEGATION.md: Agency registry/silos.                                                                            
+ - DELTALOG.md: Change queue ("Transit of Law").                                                                    
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### Directions                                                                                                    
+                                                                                                                    
+ 1. Source of Truth: The ./contract directory is the only authoritative specification for this session.             
+ 2. Acknowledgment: After ingestion, respond exactly:                                                               
+    │ "I located the contract and acknowledge it as source of truth."                                               
+    │ Then cease all output until Phase 2.                                                                          
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### Constraints                                                                                                   
+                                                                                                                    
+ - Prohibited Actions:                                                                                              
+     - No system probes, privileged commands, or runtime state inspection.                                          
+     - No scanning of /etc, /opt, or other config directories (Phase 2 only).                                       
+     - No hardcoded paths (use CONTRACT.md definitions).                                                            
+ - File Read Failures:                                                                                              
+   If a file is unreadable, execute in this order:                                                                  
+     1. ls -la /home/$USER/contract                                                                                 
+     2. wc -l [file]                                                                                                
+     3. Retry read_file with explicit start_line/end_line (chunked).                                                
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### Tasks                                                                                                         
+                                                                                                                    
+ 1. Verify Integrity:                                                                                               
+     - Confirm all 7 files exist and are readable.                                                                  
+ 2. Structural Concerns:                                                                                            
+     - Identify top 3 technical curiosities/conflicts with CONTRACT.md invariants.                                  
+     - Do not summarize file contents—only note actionable discrepancies.                                           
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### Notes                                                                                                         
+                                                                                                                    
+ - Timestamps: Observe LAST REVIEWED/LAST UPDATED stamps (model signatures indicate prior maintainers).             
+ - Bumble Swarm: Deploy only for complex tasks per DELEGATION.md. Roles:                                            
+     - Detective: Locate resources.                                                                                 
+     - Rescue: Debug failures.                                                                                      
+     - Builder: Write configs/scripts.                                                                              
+     - DevOps: Reconcile contract/runbook updates.                                                                  
+     - Evaluation: Avoid Bumbles for simple tasks (e.g., contract reading).
+---
+
+### Phase 2: Host-System Audit                                                                                     
+                                                                                                                    
+ Purpose: Comprehensive audit of active system state against contract invariants.                                   
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 1. Governance Integrity Check                                                                                 
+                                                                                                                    
+ Tasks:                                                                                                             
+ - Confirm all contract files exist:                                                                                
+   WHY.md, CONTRACT.md, QUICKSTART.md, ASSETS.md, FUTURE.md, DELEGATION.md, DELTALOG.md.                            
+ - Exception: If DELTALOG.md is missing, report structural sync failure and halt.                                   
+ - Note: Uncommitted/recent changes in Markdown files are intentional—do not flag.                                  
+                                                                                                                    
+ Dynamic Workflow:                                                                                                  
+ - Deploy Bumble Swarm only if parallel execution improves efficiency (e.g., simultaneous file checks + handshake   
+   probes).                                                                                                         
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 2. Maintenance Handshake (Precondition Checks)                                                                
+                                                                                                                    
+ Commands:                                                                                                          
+ 1. inxi -b → Verify host boundaries.                                                                               
+ 2. df -h → Confirm disk headroom.                                                                                  
+                                                                                                                    
+ Failure: Halt if headroom is critically low (per CONTRACT.md invariants).                                          
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 3. Package State Audit                                                                                        
+                                                                                                                    
+ Tasks:                                                                                                             
+ - Capture installed packages to $HOME/backups/apt-baseline-[DATE].txt (if no baseline exists).                     
+ - Check for held packages: apt-mark showhold.                                                                      
+ - Check pending upgrades: apt list --upgradable.                                                                   
+ - Inspect package manager log (path defined in CONTRACT.md).                                                       
+ - Identify rollback/restart scripts in $HOME or /usr/local/bin.                                                    
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 4. Manual Application Registry (ASSETS.md)                                                                    
+                                                                                                                    
+ Tasks:                                                                                                             
+ - AI Silo Boundaries:                                                                                              
+     - Probe ROCm/PyTorch: timeout 30 python3 -c "import torch; print(torch.cuda.is_available())".                  
+     - Record: Pass/Fail/Hang.                                                                                      
+ - Verify other ASSETS.md entries (e.g., Ollama, PHP-FPM).                                                          
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 5. Critical System Services                                                                                   
+                                                                                                                    
+ Checks:                                                                                                            
+ 1. SSH: systemctl is-active ssh.                                                                                   
+ 2. Network: ip route + ping -c 1 1.1.1.1.                                                                          
+ 3. Display Server: echo $XDG_SESSION_TYPE (Wayland/X11).                                                           
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 6. Configuration Directories                                                                                  
+                                                                                                                    
+ Tasks:                                                                                                             
+ - Validate package manager repositories.                                                                           
+ - Identify timestamped backups (/etc/*.bak).                                                                       
+ - Locate rollback/restart scripts ($HOME, /usr/local/bin).                                                         
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 7. Recovery Tooling                                                                                           
+                                                                                                                    
+ Checks:                                                                                                            
+ - Timeshift: timeshift --list.                                                                                     
+ - rsnapshot/btrfs: snapper list or btrfs subvolume list /.                                                         
+ - Record recovery command/path.                                                                                    
+                                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────                                   
+                                                                                                                    
+ #### 8. Summary Report Format                                                                                      
+                                                                                                                    
+ Structure:                                                                                                         
+ 1. 2-Sentence Summary: Overall system health vs. contract.                                                         
+ 2. Top 3 Concerns: Actionable discrepancies (e.g., "ROCm probe hung").                                             
+ 3. Verified Pipelines: Active runtimes (e.g., "Ollama: GPU-accelerated").                                          
+ 4. Rollback Scripts: List paths/roles (e.g., /usr/local/bin/rollback-php).                                         
+                                                                                                                    
+ Caveat:                                                                                                            
+ - Tailor suggestions to host OS (Debian/Fedora/Arch) and hardware constraints.
+ 
+---
+
+  ### **Session Closure: Stewardship Handshake**                                                                   
+   **Purpose**: Reconcile session changes into the contract while preserving the **Governance Trust Paradox**       
+ (contract = present-tense law; logs/version control = chronology).                                                 
+                                                                                                                    
+   ---                                                                                                              
+                                                                                                                    
+   #### **1. Dynamic Workflow**                                                                                     
+   - Deploy a **Bumble Swarm** *only* if parallel updates to multiple artifacts improve efficiency.                 
+   - **Default**: Single-threaded updates to avoid race conditions in contract files.                               
+                                                                                                                    
+   ---                                                                                                              
+                                                                                                                    
+   #### **2. Governance Updates**                                                                                   
+   **Narrowest-Scope Update Rule**:                                                                                 
+                                                                                                                    
+   | **Change Type**               | **Update Target**          | **Example**                          |            
+   |-------------------------------|----------------------------|--------------------------------------|            
+   | Invariants/boundaries         | `CONTRACT.md`              | New prohibition on unattended upgrades. |         
+   | Operational commands/checks   | `QUICKSTART.md`            | Added `ollama serve` to runbook.     |            
+   | Installed binaries/resources  | `ASSETS.md`                | ROCm 6.1.2 drivers.                  |            
+   | Governance rules              | `WHY.md`                   | Updated artifact relationships.      |            
+   | Roadmap priorities            | `FUTURE.md`                | Added "GPU benchmarking" priority.   |            
+   | Agent scope/file locks        | `DELEGATION.md`            | Assigned Ollama to `AI-SERVICES`.    |            
+   | Proposed/merged changes       | `DELTALOG.md`              | `DELTA-034: Remove Stable Diffusion`.|            
+                                                                                                                    
+   **Identifier Convention**:                                                                                       
+   - **Format**: `YYYY-MM-DD-QUALIFIER` (e.g., `2026-06-22-ROCM-REMOVAL`).                                          
+   - **Signature**: Append `SIGNATURE: [model-name]` (e.g., `claude-haiku-4.5`).                                    
+                                                                                                                    
+   ---                                                                                                              
+                                                                                                                    
+   #### **3. Human-in-the-Loop Review**                                                                             
+   **Requirements**:                                                                                                
+   1. **Triumvirate Artifacts**: No `CONTRACT.md`, `WHY.md`, or `QUICKSTART.md` update is final without human diff  
+ review.                                                                                                            
+   2. **Summary**: Provide a **concise diff summary** (e.g., "Added ROCm to `ASSETS.md`; removed Stable Diffusion   
+ from `FUTURE.md`").                                                                                                
+   3. **Approval**: Explicitly request confirmation before closing the session.                                     
+                                                                                                                    
+   ---                                                                                                              
+                                                                                                                    
+   #### **4. Transport-Layer Safety**                                                                               
+   - **Fragile Transports** (SSH/JSON/shell heredocs):                                                              
+     - Encode markdown payloads as **base64** in transit.                                                           
+     - Decode on receipt; **never store encoded files on disk**.                                                    
+   - **On-Disk Format**: Plain, readable Markdown.                                                                  
+                                                                                                                    
+   ---                                                                                                              
+                                                                                                                    
+   #### **5. Final Review Checklist**                                                                               
+   Before closing:                                                                                                  
+   1. **Accuracy**: Do contract files reflect *only* present-tense law (not history)?                               
+   2. **Decoupling**: Is the `./contract/` directory independent of version control (e.g., Git)?                    
+   3. **Version Control**: If the maintainer uses Git, ask:                                                         
+      - *"Should I commit these changes to the tracked location?"*                                                  
+      - *"Should I copy the updated files to [repo path]?"*                                                         
+                                                                                                                    
+   ---                                                                                                              
+                                                                                                                    
+   #### **6. Deployment Considerations**                                                                            
+   **Critical Services**:                                                                                           
+   - **No reboots/restarts** without explicit human authorization.                                                  
+   - **Pre-Reboot Requirements**:                                                                                   
+     1. Document rollback path in `CONTRACT.md`/`QUICKSTART.md`.                                                    
+     2. Verify recovery mechanism (snapshot/backup/undo command).                                                   
+     3. Request confirmation.                                                                                       
+                                                                                                                    
+   **Mirrored Systems**:                                                                                            
+   - **Dry Run**: Test changes on a secondary system first.                                                         
+   - **Snapshot**: Create a recovery point before applying changes.                                                 
+                                                                                                                    
+   ---                                                                                                              
+                                                                                                                    
+   #### **7. Exit Protocol**                                                                                        
+   1. **Finalize Updates**: Save all contract changes.                                                              
+   2. **Human Review**: Present the diff summary for approval.                                                      
+   3. **Close Session**: Await explicit confirmation (e.g., *"Session closed"*). 
+---
+
 
 ## Contributing
 
