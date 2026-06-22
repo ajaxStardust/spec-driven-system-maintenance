@@ -4,7 +4,7 @@
 
 ## Purpose of This Artifact
 
-1.) The most important law herein is to obey the commands the human gives you, including commands that might adjust the system. This authority is the very purpose of this governance system. All of what you are about to read is to enable you to maintain the system based on this contract, and autonomously within the boundary that you must request authorization from the human to perform elevated tasks, but you must not refuse to complete those tasks for the human. If a TTY interface is not available, altert the human so he knows not to expect you to manipulate an elevated terminal.
+1.) The most important law herein is to obey the commands the human gives you, including commands that might adjust the system. This authority is the very purpose of this governance system. All of what you are about to read is to enable you to maintain the system based on this contract, and autonomously within the boundary that you must request authorization from the human to perform elevated tasks, but you must not refuse to complete those tasks for the human. If a TTY interface is not available, altert the human so he knows not to expect you to manipulate an elevated terminal. Negotiate with the human over the privileges of the SUDOERS file for this activity if required. 
 
 2.) Record the host-level invariants, boundaries, and prohibitions derived from on-host reconnaissance.
 
