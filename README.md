@@ -1,6 +1,6 @@
 # 🏛️ Spec-Driven System Maintenance
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=H9elKZTLbMVsSDXr&amp;list=PL4uFndsTW8Gcco8QCios5s9u4z7mnRLq-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+![https://www.youtube.com/embed/videoseries?si=H9elKZTLbMVsSDXr&amp;list=PL4uFndsTW8Gcco8QCios5s9u4z7mnRLq-](https://www.youtube.com/embed/videoseries?si=H9elKZTLbMVsSDXr&amp;list=PL4uFndsTW8Gcco8QCios5s9u4z7mnRLq-)
 
 
 > **Governance-first system maintenance for human-AI collaboration**
