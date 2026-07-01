@@ -1,9 +1,8 @@
 # 🏛️ Spec-Driven System Maintenance
 
-![https://www.youtube.com/embed/videoseries?si=H9elKZTLbMVsSDXr&amp;list=PL4uFndsTW8Gcco8QCios5s9u4z7mnRLq-](https://www.youtube.com/embed/videoseries?si=H9elKZTLbMVsSDXr&amp;list=PL4uFndsTW8Gcco8QCios5s9u4z7mnRLq-)
+[![The Agentic Trivium – Contract-Style Comments](https://i.ytimg.com/vi_webp/flVrGyu2KjA/maxresdefault.webp)](https://www.youtube.com/playlist?list=PL4uFndsTW8Gcco8QCios5s9u4z7mnRLq-)
 
-
-> **Governance-first system maintenance for human-AI collaboration**
+> ▶️ [Governance-first system maintenance for human-AI collaboration]((https://www.youtube.com/playlist?list=PL4uFndsTW8Gcco8QCios5s9u4z7mnRLq-) <- view Complete Course
 
 ## Purpose
 
